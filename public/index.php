@@ -19,8 +19,8 @@
         $router = new Router(Env::get('APP_URL'));
 
         /**
-         * Controllers
-         */
+        * Controllers
+        */
         $router->namespace("App\Controllers")->group(null);
 
         /**
@@ -49,9 +49,36 @@
         $router->put("/users/{id}", "UserController:updateUser");
 
         /**
-         * Delete user:
-         */
-         $router->delete("/users/{id}", "UserController:deleteUser");
+        * Delete user:
+        */
+        $router->delete("/users/{id}", "UserController:deleteUser");
+
+        //PRODUCTS
+
+        /**
+        * Get all products:
+        */
+        $router->get("/products", "ProductController:getAllProducts");
+
+        /**
+        * Get product by ID:
+        */
+        $router->get("/products/{id}", "ProductController:getProductById");
+
+        /**
+        * Create a new product:
+        */
+        $router->post("/products", "ProductController:createProduct");
+
+        /**
+        * Update product:
+        */
+        $router->put("/products/{id}", "ProductController:updateProduct");
+
+        /**
+        * Delete user:
+        */
+        $router->delete("/products/{id}", "ProductController:deleteProduct");
 
         $router->dispatch();
 
