@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /
+
+# Si la solicitud no es un archivo existente
+RewriteCond %{REQUEST_FILENAME} !-f
+# Si la solicitud no es un directorio existente
+RewriteCond %{REQUEST_FILENAME} !-d
+# Redirigir todas las solicitudes al archivo index.php
+RewriteRule ^(.*)$ index.php?route=$1 [L,QSA]
