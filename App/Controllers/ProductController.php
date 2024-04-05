@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 
+use App\Helpers\Validation;
 use App\Models\Product;
 use App\Models\User;
 use App\Models\View;
@@ -8,6 +9,12 @@ use App\Schema\ProductSchema;
 use App\Schema\UserSchema;
 
 class ProductController {
+
+    private $productModel;
+
+    public function __construct() {
+        $this->productModel = new Product;
+    }
 
     public function getAllProducts() {
         $productModel = new Product();
@@ -53,6 +60,11 @@ class ProductController {
         $postdata = file_get_contents("php://input");
         $request = json_decode($postdata, true);
 
+        $validationResult = Validation::validateProductData($request);
+        if ($validationResult !== null) {
+            return View::renderJSON($validationResult, 400);
+        }
+
         if (count($request) > 0) {
             $product = new ProductSchema(
                 0,
@@ -62,9 +74,8 @@ class ProductController {
                 $request["pack_size"]
             );
 
-            //echo json_encode($request);
+            $result = $this->productModel->createProduct($product);
 
-            $result = $productModel->createProduct($product);
             if ($result) {
                 return View::renderJSON([
                     'status'  => 201,

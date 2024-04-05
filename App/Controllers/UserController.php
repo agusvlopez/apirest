@@ -1,13 +1,19 @@
 <?php
 namespace App\Controllers;
 
+use App\Helpers\Validation;
 use App\Models\User;
 use App\Models\View;
 use App\Schema\UserSchema;
 
 class UserController {
 
-    
+    private $userModel;
+
+    public function __construct() {
+        $this->userModel = new User;
+    }
+
     public function getAllUsers() {
         $userModel = new User();
         $users = $userModel->getAllUsers();
@@ -47,9 +53,13 @@ class UserController {
     }
 
     function createUser() {
-        $userModel = new User();
         $postdata = file_get_contents("php://input");
         $request = json_decode($postdata, true);
+
+        $validationResult = Validation::validateUserData($request);
+        if ($validationResult !== null) {
+            return View::renderJSON($validationResult, 400);
+        }
 
         if (count($request) > 0) {
             $user = new UserSchema(
@@ -59,9 +69,8 @@ class UserController {
 
             );
 
-            //echo json_encode($request);
+            $result = $this->userModel->createUser($user);
 
-            $result = $userModel->createUser($user);
             if ($result) {
                 return View::renderJSON([
                     'status'  => 201,
