@@ -1,14 +1,13 @@
 <?php
 
-    namespace App\Models;
+namespace App\Models;
 
-    class View {
+class View {
 
-        public static function renderJson($content, string $title = "data")
-        {
-            $content = json_decode(json_encode($content), true);
-        
-            header("Content-Type: application/json");
-            echo json_encode([$title => $content], JSON_PRETTY_PRINT);
-        }
+    public static function renderJSON($content, int $statusCode = 200, string $title = "data")
+    {
+        http_response_code($statusCode);
+        header("Content-Type: application/json");
+        echo json_encode([$title => $content], JSON_PRETTY_PRINT);
     }
+}

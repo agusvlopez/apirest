@@ -19,10 +19,10 @@ class UserController {
         $users = $userModel->getAllUsers();
 
         return View::renderJSON([
-            'status'  => "success",
-            'message' => "Usuarios encontrados con éxito!",
+            'status'  => 'success',
+            'message' => 'Users found successfully',
             'users'  => $users
-        ]);
+        ], 200);
     }
 
     function getUserById($params) {
@@ -33,11 +33,10 @@ class UserController {
             // var_dump($disco);
             if ($user) {
                 return View::renderJSON([
-                    'status'  => 200,
-                    'message' => "Usuario encontrado con éxito!",
+                    'status'  => 'success',
+                    'message' => 'User found successfully',
                     'user'  => $user
-                ]);
-
+                ], 200);
             } else {
                 return View::renderJSON([
                     'status'  => 404,
@@ -73,9 +72,10 @@ class UserController {
 
             if ($result) {
                 return View::renderJSON([
-                    'status'  => 201,
-                    'message' => "Usuario creado con éxito.",
-                ]);
+                    'status'  => 'success',
+                    'message' => 'User created successfully',
+                    'user'  => $result
+                ], 201);
             } else {
                 return View::renderJSON([
                     'status'  => 500,
@@ -110,9 +110,10 @@ class UserController {
                 
                 if ($result) {
                     return View::renderJSON([
-                        'status'  => 200,
-                        'message' => "Usuario actualizado.",
-                    ]);
+                        'status'  => 'success',
+                        'message' => 'User updated successfully',
+                        'user'  => $result
+                    ], 201);
                 } else {
                     return View::renderJSON([
                         'status'  => 500,
@@ -135,12 +136,13 @@ class UserController {
 
     function deleteUser($params) {
         $userModel = new User();
-        $ok = $userModel->deleteUser($params["id"]);
-        if ($ok) {
+        $result = $userModel->deleteUser($params["id"]);
+        if ($result) {
             return View::renderJSON([
-                'status'  => 200,
-                'message' => "Usuario eliminado.",
-            ]);
+                'status'  => 'success',
+                'message' => 'User deleted',
+                'user'  => $result
+            ], 200);
         } else {
             return View::renderJSON([
                 'status'  => 400,
