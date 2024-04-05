@@ -21,11 +21,11 @@ class ProductController {
         $products = $productModel->getAllProducts();
 
         return View::renderJSON([
-            'status'  => "success",
-            'message' => "Productos encontrados con éxito!",
-            'users'  => $products
-        ]);
-        //echo json_encode($users);
+            'status'  => 'success',
+            'message' => 'Products found successfully',
+            'products'  => $products
+        ], 200);
+
     }
 
     function getProductById($params) {
@@ -36,10 +36,10 @@ class ProductController {
 
             if ($product) {
                 return View::renderJSON([
-                    'status'  => 200,
-                    'message' => "Producto encontrado con éxito!",
-                    'user'  => $product
-                ]);
+                    'status'  => 'success',
+                    'message' => 'Products found successfully',
+                    'product'  => $product
+                ], 200);
 
             } else {
                 return View::renderJSON([
@@ -56,7 +56,6 @@ class ProductController {
     }
 
     function createProduct() {
-        $productModel = new Product();
         $postdata = file_get_contents("php://input");
         $request = json_decode($postdata, true);
 
@@ -78,9 +77,10 @@ class ProductController {
 
             if ($result) {
                 return View::renderJSON([
-                    'status'  => 201,
-                    'message' => "Usuario creado con éxito.",
-                ]);
+                    'status'  => 'success',
+                    'message' => 'Product created successfully',
+                    'product'  => $product
+                ], 201);
             } else {
                 return View::renderJSON([
                     'status'  => 500,
@@ -112,13 +112,15 @@ class ProductController {
                     $request["price"],
                     $request["pack_size"]
                 );
+                
                 $result = $productModel->updateProduct($product, $params["id"]);
                 
                 if ($result) {
                     return View::renderJSON([
-                        'status'  => 200,
-                        'message' => "Usuario actualizado.",
-                    ]);
+                        'status'  => 'success',
+                        'message' => 'Product updated successfully',
+                        'product'  => $result
+                    ], 201);
                 } else {
                     return View::renderJSON([
                         'status'  => 500,
@@ -144,9 +146,10 @@ class ProductController {
         $result = $productModel->deleteProduct($params["id"]);
         if ($result) {
             return View::renderJSON([
-                'status'  => 200,
-                'message' => "Producto eliminado.",
-            ]);
+                'status'  => 'success',
+                'message' => 'Product deleted',
+                'product'  => $result
+            ], 200);
         } else {
             return View::renderJSON([
                 'status'  => 400,
@@ -155,5 +158,4 @@ class ProductController {
         }
     }
 
-    // Otros métodos para manejar otras operaciones CRUD
 }

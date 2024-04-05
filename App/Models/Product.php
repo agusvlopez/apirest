@@ -60,8 +60,6 @@ class Product {
 
             return true;
         } catch (PDOException $e) {
-            // Manejar el error de alguna manera, como registrar un mensaje de error
-            error_log("Error al actualizar usuario: " . $e->getMessage());
             return false;
         }
     }
@@ -75,12 +73,9 @@ class Product {
             return true;
 
         } catch(PDOException $e) {
-            //throw new Exception("No se ha podido conectar con la base de datos", 1);
-            error_log("Error al eliminar el usuario: " . $e->getMessage());
             return false;
         }
         
     }
     
-    // Otros métodos CRUD según sea necesario
 }
