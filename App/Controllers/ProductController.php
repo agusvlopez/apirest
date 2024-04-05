@@ -8,11 +8,6 @@ use App\Schema\ProductSchema;
 use App\Schema\UserSchema;
 
 class ProductController {
-    // private $userModel;
-
-    // public function __construct(User $userModel) {
-    //     $this->userModel = $userModel;
-    // }
 
     public function getAllProducts() {
         $productModel = new Product();

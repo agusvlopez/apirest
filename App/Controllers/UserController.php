@@ -6,12 +6,8 @@ use App\Models\View;
 use App\Schema\UserSchema;
 
 class UserController {
-    // private $userModel;
 
-    // public function __construct(User $userModel) {
-    //     $this->userModel = $userModel;
-    // }
-
+    
     public function getAllUsers() {
         $userModel = new User();
         $users = $userModel->getAllUsers();
@@ -21,7 +17,6 @@ class UserController {
             'message' => "Usuarios encontrados con éxito!",
             'users'  => $users
         ]);
-        //echo json_encode($users);
     }
 
     function getUserById($params) {
