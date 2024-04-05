@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 
+use App\Helpers\Env;
 use PDO;
 use PDOException;
 
@@ -8,7 +9,7 @@ class User {
     private $db;
 
     public function __construct() {
-        $this->db = new PDO("mysql:host=". 'localhost' .";dbname=" . 'api_php', 'root', '');
+        $this->db = new PDO("mysql:host=". Env::get('DB_HOST') .";dbname=" . Env::get('DB_NAME'), Env::get('DB_USER'), Env::get('DB_PASS'));
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
