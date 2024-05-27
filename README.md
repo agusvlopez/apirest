@@ -39,13 +39,6 @@ DB_NAME = c0370409_agus
 DB_USER = root
 DB_PASS =
 
-
-**DE MANERA REMOTA**
-
-Utilice RAPID API o Postman o cualquier otra herramienta que permita realizar consultas a la API utilizando [https://desarrollodesitios0.site/agustinachallenge/public/] como URI.
-
-**El LOGIN y AUTHORIZATION no esta disponible de esta manera**
-
 ***
 
 ### 📖 Dependencias utilizadas:
@@ -74,7 +67,6 @@ Para poder obtener este Token es necesario iniciar sesión. Más abajo se mostra
 
 ### Endpoints:
 
-https://desarrollodesitios0.site/agustinachallenge/public/ `endpoint` o
 http://localhost/apirest/public/ `endpoint`
 
 | Endpoint | Acesso | Método       | Descripción |
@@ -120,13 +112,13 @@ Una vez obtenido el Token, lo ubicamos en el Header de esta forma:
 
 **3. POST DE UN PRODUCTO**
 
-Primero hacemos una consulta GET [https://desarrollodesitios0.site/agustinachallenge/public/brands] o GET [https://localhost/apirest/public/brands] para ver las marcas disponibles y asi obtener el ID de la marca indicada.
+Primero hacemos una consulta GET [https://localhost/apirest/public/brands] para ver las marcas disponibles y asi obtener el ID de la marca indicada.
 
 ![Example for GET brands](https://i.postimg.cc/QMc3TXSR/get-brands.png "Example for GET brands").
 
 En este caso queremos subir un nuevo producto de la marca Parliament, que como vemos, su **ID** es **2**.
 
-Ahora si, realizamos un POST [https://desarrollodesitios0.site/agustinachallenge/public/products] o POST [https://localhost/apirest/public/products] para crear un nuevo producto.
+Ahora si, realizamos un POST [https://localhost/apirest/public/products] para crear un nuevo producto.
 
 Indicamos lo siguiente en el Body: 
 
@@ -143,11 +135,10 @@ Esto me devuelve el ID generado del producto.
 
 **4.GET DEL PRODUCTO GENERADO**
 
-Como sabemos el ID, podemos buscarlo realizando un GET [https://desarrollodesitios0.site/agustinachallenge/public/products/{id}] o GET [https://localhost/apirest/public/products/{id}] 
+Como sabemos el ID, podemos buscarlo realizando un GET [https://localhost/apirest/public/products/{id}] 
 
 Indicamos lo siguiente: 
 
-   GET [https://desarrollodesitios0.site/agustinachallenge/public/products/17] o
    GET [https://localhost/apirest/public/products/17]
 
 ![Example for GET product by ID](https://i.postimg.cc/zGZTGkvz/get-product-by-id.png "Example for GET product by ID").
@@ -156,11 +147,10 @@ Como vemos, al buscarlo nos trae todos los datos, incluido el nombre de la marca
 
 **5. PUT DEL PRODUCTO GENERADO**
 
-Ahora vamos a modificar el campo **pack_size** del producto generado. Para eso, realizamos un PUT [https://desarrollodesitios0.site/agustinachallenge/public/products/{id}] o PUT [https://localhost/apirest/public/products/{id}] 
+Ahora vamos a modificar el campo **pack_size** del producto generado. Para eso, realizamos un PUT [https://localhost/apirest/public/products/{id}] 
 
 Indicamos lo siguiente: 
 
-    PUT [https://desarrollodesitios0.site/agustinachallenge/public/products/17] o
     PUT [https://localhost/apirest/public/products/17]
 
 En el **Body** indicamos todos los campos necesarios modificando el campo o los campos que queremos actualizar, en este caso actualizamos el campo pack_size a 10: 
@@ -176,48 +166,44 @@ En el **Body** indicamos todos los campos necesarios modificando el campo o los 
 
 **5. DELETE DEL PRODUCTO GENERADO**
 
-Para eliminar el producto es necesario indicar el id como parametro. De esta forma, realizamos un DELETE [https://desarrollodesitios0.site/agustinachallenge/public/products/{id}] o DELETE [https://localhost/apirest/public/products/{id}]
+Para eliminar el producto es necesario indicar el id como parametro. De esta forma, realizamos un DELETE [https://localhost/apirest/public/products/{id}]
 
 Indicamos lo siguiente: 
 
-    DELETE [https://desarrollodesitios0.site/agustinachallenge/public/products/17] o
     DELETE [https://localhost/apirest/public/products/17]
 
 ![Example for DELETE product by ID](https://i.postimg.cc/s232Lc91/product-deleted.png "Example for DELETE product by ID").
     
 **5. GET DE TODOS LOS PRODUCTOS**   
 
-Por último, acudimos a: GET [https://desarrollodesitios0.site/agustinachallenge/public/products] o GET [https://localhost/apirest/public/products] y verificamos que el producto eliminado efectivamente ya no se encuentre.
+Por último, acudimos a: GET [https://localhost/apirest/public/products] y verificamos que el producto eliminado efectivamente ya no se encuentre.
 
 ![Example for GET products](https://i.postimg.cc/0QsDNDsw/get-products.png "Example for GET products").
 
 **6. BUSCAR PRODUCTOS FILTRADOS POR UN PRECIO MÁXIMO**
 
-Para realizar esta consulta (siempre con números enteros): GET [https://desarrollodesitios0.site/agustinachallenge/public/products/max_price/{max_price}] o GET [https://localhost/apirest/public/products/max_price/{max_price}]
+Para realizar esta consulta (siempre con números enteros): GET [https://localhost/apirest/public/products/max_price/{max_price}]
 
 En este caso, buscaremos todos los productos cuyo precio máximo sea de US$4. Indicamos lo siguiente: 
 
-    GET [https://desarrollodesitios0.site/agustinachallenge/public/products/max_price/4] o
     GET [https://localhost/apirest/public/products/max_price/4]
 
 ![Example for GET products by max price](https://i.postimg.cc/TYwNVLyb/products-by-max-price.png "Example for GET products by max price").
 
 **7. BUSCAR PRODUCTOS FILTRADOS POR MARCA**
-Para realizar esta consulta: GET [https://desarrollodesitios0.site/agustinachallenge/public/products/brand/{brand_id}] o GET [https://localhost/apirest/public/products/brand/{brand_id}]
+Para realizar esta consulta: GET [https://localhost/apirest/public/products/brand/{brand_id}]
 
 En este caso, buscaremos todos los productos cuyo ID de la marca es 4. Indicamos lo siguiente: 
 
-    GET [https://desarrollodesitios0.site/agustinachallenge/public/products/brand/4] o
     GET [https://localhost/apirest/public/products/brand/4]
 
 ![Example for GET products by brand](https://i.postimg.cc/qMQF3fp1/products-by-brand.png "Example for GET products by brand").
 
 **7. BUSCAR PRODUCTOS FILTRADOS POR TAMAÑO DE PAQUETE**
-Para realizar esta consulta: GET [https://desarrollodesitios0.site/agustinachallenge/public/products/pack_size/{pack_size}] o GET [https://localhost/apirest/public/products/pack_size/{pack_size}]
+Para realizar esta consulta: GET [https://localhost/apirest/public/products/pack_size/{pack_size}]
 
 En este caso, buscaremos todos los productos cuyo tamaño de paquete (su contenido), que en general son de 10 o 20. Indicamos lo siguiente: 
 
-    GET [https://desarrollodesitios0.site/agustinachallenge/public/products/pack_size/10] o
     GET [https://localhost/apirest/public/products/pack_size/10]
 
 ![Example for GET products by pack size](https://i.postimg.cc/Y08w0hX3/get-product-by-pack-size.png "Example for GET products by pack size").
